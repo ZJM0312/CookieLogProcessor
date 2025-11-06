@@ -1,0 +1,19 @@
+#!/bin/bash
+# Shell script wrapper for the Most Active Cookie application
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Path to the JAR file
+JAR_FILE="$SCRIPT_DIR/target/most_active_cookie.jar"
+
+# Check if JAR file exists
+if [ ! -f "$JAR_FILE" ]; then
+    echo "Error: JAR file not found at $JAR_FILE"
+    echo "Please run 'mvn clean package' first to build the project."
+    exit 1
+fi
+
+# Execute the JAR with all command-line arguments
+java -jar "$JAR_FILE" "$@"
+
